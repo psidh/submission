@@ -23,8 +23,10 @@ export default function Main(): JSX.Element {
   };
 
   // Generating the Cards initially
+
   const handleGenerateCards = (): void => {
-    fetch(`https://picsum.photos/v2/list?page=1&limit=${numOfCards}`)
+    const randomImagePage = Math.floor(Math.random() * 10);
+    fetch(`https://picsum.photos/v2/list?page=${randomImagePage}&limit=${numOfCards}`)
       .then((response) => response.json())
       .then((data: ImageData[]) => {
         setImageData(data);
@@ -113,7 +115,6 @@ export default function Main(): JSX.Element {
             </p>
           </div>
 
-          
           {/* Generated Cards */}
           <div className="flex flex-wrap justify-around">
             {imageData.map((image: ImageData) => (
@@ -122,8 +123,12 @@ export default function Main(): JSX.Element {
                 className="rounded-lg m-8 p-4 bg-white flex flex-col justify-center items-center mx-2 w-[90%] md:w-[34%]"
               >
                 <img src={image.download_url} alt={image.author} className="" />
-                <p className="my-2 text-md md:text-xl font-semibold">{image.author}</p>
-                <p className="my-2 text-sm md:text-xl font-semibold flex overflow">{image.url}</p>
+                <p className="my-2 text-md md:text-xl font-semibold">
+                  {image.author}
+                </p>
+                <p className="my-2 text-sm md:text-xl font-semibold flex overflow">
+                  {image.url}
+                </p>
                 <p className="my-2 text-sm font-semibold">
                   Dimensions: {image.width} x {image.height}
                 </p>
@@ -137,7 +142,6 @@ export default function Main(): JSX.Element {
             ))}
           </div>
         </div>
-
 
         {/* This is a pop-up triggered during editing of the card*/}
         {showModal && (
@@ -179,13 +183,8 @@ export default function Main(): JSX.Element {
                     </button>
                   </div>
                 </>
-              ) 
-              
-                
-              : 
-            
-              //This is a pop-up triggered during creation of the card
-              ( 
+              ) : (
+                //This is a pop-up triggered during creation of the card
                 <>
                   <h2 className="text-xl font-semibold mb-4">
                     Select the number of cards:
