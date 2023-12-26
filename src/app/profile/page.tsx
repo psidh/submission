@@ -51,7 +51,7 @@ export default function Home() {
           </div>
           <a
             href="/"
-            className="px-4 py-1 bg-orange-400 hover:bg-orange-600 text-white rounded-lg w-[12%]"
+            className="px-4 py-1 bg-orange-400 hover:bg-orange-600 text-white rounded-lg w-full sm:w-[12%]"
           >
             HOME
           </a>
